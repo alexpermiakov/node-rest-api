@@ -1,0 +1,13 @@
+.idea/
+.vscode/
+node_modules/
+dist/
+tmp/
+temp/
+*.log
+log/
+coverage/
+.env
+.tscache
+sessions/
+certs/

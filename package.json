@@ -1,0 +1,16 @@
+{
+  "name": "node-rest-api-article",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsc-watch --onSuccess \"node ./dist/server.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tsc-watch": "^1.0.31",
+    "typescript": "^3.2.2"
+  }
+}
