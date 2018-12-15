@@ -1,5 +1,6 @@
-export class HTTPClientError extends Error {
-  status!: number;
+export abstract class HTTPClientError extends Error {
+  readonly statusCode!: number;
+  readonly name!: string;
 
   constructor(message: object | string) {
     if (message instanceof Object) {
@@ -7,25 +8,39 @@ export class HTTPClientError extends Error {
     } else {
       super(message);
     }
+    this.name = this.constructor.name;
+    Error.captureStackTrace(this, this.constructor);
   }
 }
 
 export class HTTP400Error extends HTTPClientError {
-  status = 400;
-  message = "Bad Request";
+  readonly statusCode = 400;
+
+  constructor(message: string | object = "Bad Request") {
+    super(message);
+  }
 }
 
 export class HTTP401Error extends HTTPClientError {
-  status = 401;
-  message = "Unauthorized";
+  readonly statusCode = 401;
+
+  constructor(message: string | object = "Unauthorized") {
+    super(message);
+  }
 }
 
 export class HTTP403Error extends HTTPClientError {
-  status = 403;
-  message = "Forbidden";
+  readonly statusCode = 403;
+
+  constructor(message: string | object = "Forbidden") {
+    super(message);
+  }
 }
 
 export class HTTP404Error extends HTTPClientError {
-  status = 404;
-  message = "Not found";
+  readonly statusCode = 404;
+
+  constructor(message: string | object = "Not found") {
+    super(message);
+  }
 }
