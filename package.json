@@ -12,11 +12,16 @@
   "dependencies": {
     "@types/compression": "0.0.36",
     "@types/cors": "^2.8.4",
+    "@types/dotenv": "^6.1.0",
     "@types/express": "^4.16.0",
     "@types/node": "^10.12.12",
+    "@types/request-promise": "^4.1.42",
     "compression": "^1.7.3",
     "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
     "express": "^5.0.0-alpha.7",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
     "tsc-watch": "^1.0.31",
     "typescript": "^3.2.2"
   }
