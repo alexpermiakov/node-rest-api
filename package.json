@@ -4,11 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsc-watch --onSuccess \"node ./dist/server.js\""
+    "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
+    "test": "jest --coverage --verbose"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "jest": {
+    "verbose": true,
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
   "dependencies": {
     "@types/compression": "0.0.36",
     "@types/cors": "^2.8.4",
@@ -26,5 +42,10 @@
     "swagger-ui-express": "^4.0.2",
     "tsc-watch": "^1.0.31",
     "typescript": "^3.2.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.10",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.5"
   }
 }
