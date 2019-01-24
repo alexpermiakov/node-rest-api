@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "npx tsc",
     "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
+    "start": "npx pm2 start pm2.yaml",
     "test": "jest"
   },
   "keywords": [],
@@ -38,6 +40,7 @@
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^5.0.0-alpha.7",
+    "pm2": "^3.2.9",
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
     "supertest": "^3.4.1",
