@@ -1,8 +1,7 @@
-# Production ready Node.js REST APIs Setup using TypeScript , PostgreSQL and Redis. Part 1.
-
 # Prerequisites
-* npm 6+
-* node.js 10+
+
+- npm 6+
+- node.js 10+
 
 ### .env (for local environment variables)
 
@@ -11,5 +10,6 @@ Then add this line in .env:
 OPEN_CAGE_DATA_KEY=8c0892514e884f09af7c09a9b067b02b
 
 # Getting started
-1. ```npm install```
-2. ```npm run dev```
+
+1. `npm install`
+2. `npm run dev`
