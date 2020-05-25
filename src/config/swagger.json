@@ -1,0 +1,38 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/v1",
+  "schemes": ["http"],
+  "produces": ["application/json"],
+  "paths": {
+    "/search": {
+      "get": {
+        "tags": ["Search Text"],
+        "summary": "Search by places using opencagedata service",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        },
+        "content": {
+          "application/json": {}
+        },
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Specifies the query string",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    }
+  }
+}
