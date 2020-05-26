@@ -1,3 +1,4 @@
 import searchRoutes from './search/routes';
+import authRoutes from './auth/routes';
 
-export default [...searchRoutes];
+export default [...searchRoutes, ...authRoutes];
