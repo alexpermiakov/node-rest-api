@@ -5,25 +5,10 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+let id = 1;
+const getId = () => id++;
 const users = new Map();
 const JWT_SECRET = process.env.JWT_SECRET_KEY as string;
-
-export const authenticate = (email: string, password: string) => {
-  if (!email || !password) {
-    throw new HTTP400Error();
-  }
-
-  if (!bcrypt.compareSync(password, users.get(email))) {
-    throw new HTTP401Error();
-  }
-
-  const token = jwt.sign({ email }, JWT_SECRET, {
-    algorithm: 'HS256',
-    expiresIn: 300,
-  });
-
-  return token;
-};
 
 export const registerNewUser = (email: string, password: string) => {
   if (!email || !password) {
@@ -31,9 +16,29 @@ export const registerNewUser = (email: string, password: string) => {
   }
 
   let hash_password = bcrypt.hashSync(password, 8);
-  users.set(email, hash_password);
+  let id = getId();
+  users.set(email, { hash_password, id });
 
-  const token = jwt.sign({ email }, JWT_SECRET, {
+  const token = jwt.sign({ sub: id }, JWT_SECRET, {
+    algorithm: 'HS256',
+    expiresIn: 300,
+  });
+
+  return token;
+};
+
+export const authenticate = (email: string, password: string) => {
+  if (!email || !password) {
+    throw new HTTP400Error();
+  }
+
+  let user = users.get(email);
+
+  if (!user || !bcrypt.compareSync(password, user.hash_password)) {
+    throw new HTTP401Error();
+  }
+
+  const token = jwt.sign({ sub: user.id }, JWT_SECRET, {
     algorithm: 'HS256',
     expiresIn: 300,
   });
