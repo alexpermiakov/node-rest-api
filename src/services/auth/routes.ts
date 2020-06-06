@@ -56,4 +56,28 @@ export default [
       },
     ],
   },
+  {
+    path: '/',
+    method: 'get',
+    handler: [
+      (req: Request, res: Response) => {
+        res.status(200).send(`
+          <h1>Create new user</h1>
+          <form action="/api/v1/signup" method="POST">
+              <div style="margin-bottom: 10px">
+                <label for="email">Your email:</label>
+                <input id="email" name="email" type="text" />
+              </div>
+              <div style="margin-bottom: 10px">
+                <label for="password">Your password:</label>
+                <input id="password" name="password" type="password" />
+              </div>
+            
+              <input type="hidden" name="_csrf" value="${req.csrfToken()}" />
+              <input type="submit" value="Submit" />
+          </form>
+        `);
+      },
+    ],
+  },
 ];
