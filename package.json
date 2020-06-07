@@ -39,6 +39,7 @@
     "@types/helmet": "0.0.47",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/node": "^14.0.5",
+    "@types/redis": "^2.8.22",
     "@types/supertest": "^2.0.9",
     "@types/swagger-ui-express": "^4.1.2",
     "bcryptjs": "^2.4.3",
@@ -54,6 +55,7 @@
     "helmet": "^3.22.0",
     "jsonwebtoken": "^8.5.1",
     "rand-token": "^1.0.1",
+    "redis": "^3.0.2",
     "supertest": "^4.0.2",
     "swagger-ui-express": "^4.1.4",
     "typescript": "^3.9.3"

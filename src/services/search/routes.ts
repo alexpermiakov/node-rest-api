@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { getPlacesByName } from './SearchController';
 import { checkSearchParams } from '../../middleware/checks';
 import { authenticate } from '../../middleware/authenticate';
+import { getFromCache } from '../../middleware/caching';
 
 export default [
   {
@@ -9,6 +10,7 @@ export default [
     method: 'get',
     handler: [
       checkSearchParams,
+      getFromCache,
       async ({ query }: Request, res: Response) => {
         const result = await getPlacesByName(query.q as string);
         res.status(200).send(result);
@@ -21,6 +23,7 @@ export default [
     handler: [
       authenticate,
       checkSearchParams,
+      getFromCache,
       async ({ query }: Request, res: Response) => {
         const result = await getPlacesByName(query.q as string);
         res.status(200).send(result);
