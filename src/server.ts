@@ -6,14 +6,21 @@ import middleware from './middleware';
 import errorHandlers from './middleware/errorHandlers';
 import routes from './services';
 import { initDependencies } from './config/index';
+import { logger } from './config/logger';
 
 process.on('uncaughtException', (e) => {
-  console.log('uncaughtException!', e);
+  logger.error({
+    message: `uncaughtException`,
+    extra: e,
+  });
   process.exit(1);
 });
 
 process.on('unhandledRejection', (e) => {
-  console.log('unhandledRejection!', e);
+  logger.error({
+    message: `unhandledRejection`,
+    extra: e,
+  });
   process.exit(1);
 });
 
@@ -28,7 +35,9 @@ const server = http.createServer(router);
 async function start() {
   await initDependencies();
   server.listen(PORT, () =>
-    console.log(`Server is running http://localhost:${PORT}...`),
+    logger.info({
+      message: `Server is running http://localhost:${PORT}...`,
+    }),
   );
 }
 
