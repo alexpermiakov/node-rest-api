@@ -1,7 +1,9 @@
-import { init as initRedis } from './redis';
+import { init as initCache } from './cache';
+import { init as initDb } from './db';
 
 const initDependencies = async () => {
-  await initRedis();
+  await initCache();
+  await initDb();
 };
 
 export { initDependencies };

@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { getPlacesByName } from './SearchController';
 import { checkSearchParams } from '../../middleware/checks';
 import { authenticate } from '../../middleware/authenticate';
@@ -10,7 +10,10 @@ export default [
     method: 'get',
     handler: [
       checkSearchParams,
-      getFromCache,
+      (req: Request, res: Response, next: NextFunction) => {
+        const key = 'search-' + req.query.q;
+        getFromCache(key, res, next);
+      },
       async ({ query }: Request, res: Response) => {
         const result = await getPlacesByName(query.q as string);
         res.status(200).send(result);
@@ -23,7 +26,10 @@ export default [
     handler: [
       authenticate,
       checkSearchParams,
-      getFromCache,
+      (req: Request, res: Response, next: NextFunction) => {
+        const key = 'search-' + req.query.q;
+        getFromCache(key, res, next);
+      },
       async ({ query }: Request, res: Response) => {
         const result = await getPlacesByName(query.q as string);
         res.status(200).send(result);
