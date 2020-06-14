@@ -1,5 +1,5 @@
 import { getPlaces } from './providers/OpenCageDataProvider';
-import { redisClient } from '../../config/redis';
+import { redisClient } from '../../config/cache';
 
 export const getPlacesByName = async (q: string) => {
   if (q.length < 3) {
