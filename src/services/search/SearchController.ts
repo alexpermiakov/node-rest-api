@@ -1,5 +1,6 @@
 import { getPlaces } from './providers/OpenCageDataProvider';
 import { redisClient } from '../../config/cache';
+import { publish } from '../../config/messenger';
 
 export const getPlacesByName = async (q: string) => {
   if (q.length < 3) {
@@ -11,6 +12,7 @@ export const getPlacesByName = async (q: string) => {
 
   let result = await getPlaces(q);
   redisClient.set(q, JSON.stringify(result));
+  publish(result);
 
   return result;
 };
