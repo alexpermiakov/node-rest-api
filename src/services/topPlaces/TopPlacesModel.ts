@@ -13,13 +13,13 @@ const addPlaces = async (features: Feature[]) => {
   let res = features.map((feature) => [JSON.stringify(feature)]);
 
   await dbClient.query(
-    format('INSERT INTO "topplaces" (feature) VALUES %L', res),
+    format('INSERT INTO "TopPlaces" (feature) VALUES %L', res),
   );
 };
 
 export const getPlaces = async (offset = 0, limit = 20) => {
   const res = await dbClient.query(
-    'SELECT * FROM "topplaces" LIMIT $1 OFFSET $2;',
+    'SELECT * FROM "TopPlaces" LIMIT $1 OFFSET $2;',
     [limit, offset],
   );
   return res.rows;
