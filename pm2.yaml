@@ -1,0 +1,5 @@
+apps:
+  - script: ./dist/server.js
+    name: 'api-app'
+    instances: 4
+    exec_mode: cluster
