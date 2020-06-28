@@ -4,7 +4,10 @@ import { logger } from './logger';
 
 dotenv.config();
 
-const dbClient = new Client(process.env.DB_CONNECTION);
+const dbClient = new Client({
+  connectionString: process.env.DB_URL,
+  ssl: { rejectUnauthorized: false },
+});
 
 dbClient.on('error', (err: Error) => {
   logger.info({

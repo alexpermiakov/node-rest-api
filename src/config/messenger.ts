@@ -1,12 +1,16 @@
 import amqp, { Channel, Message } from 'amqplib/callback_api';
 import { logger } from './logger';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 let channel: Channel;
 let exchange = 'places';
+let AMQP_URL = process.env.AMQP_URL || 'amqp://localhost:5672';
 
 const init = async () =>
   new Promise((resolved, rejected) => {
-    amqp.connect('amqp://localhost:5672', (err, connection) => {
+    amqp.connect(AMQP_URL, (err, connection) => {
       if (err) {
         return rejected(err);
       }

@@ -5,7 +5,7 @@ import { logger } from './logger';
 dotenv.config();
 
 const redisClient = redis.createClient({
-  host: process.env.REDIS_HOST || '127.0.0.1',
+  url: process.env.REDIS_URL || 'redis://localhost:6379',
 });
 
 const init = async () =>
