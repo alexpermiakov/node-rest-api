@@ -6,7 +6,7 @@
     "postinstall": "npm run build",
     "build": "tsc",
     "dev": "concurrently -k \"tsc -w\" \"nodemon --on-change-only dist/server.js\"",
-    "start": "npx pm2 start pm2.yaml",
+    "start": "npx pm2-runtime start pm2.yaml",
     "test": "jest --coverage --verbose --passWithNoTests"
   },
   "jest": {
