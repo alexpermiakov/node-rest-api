@@ -6,11 +6,11 @@ dotenv.config();
 
 let channel: Channel;
 let exchange = 'places';
-let AMQP_URL = process.env.AMQP_URL || 'amqp://localhost:5672';
+let { CLOUDAMQP_URL = 'amqp://localhost:5672' } = process.env;
 
 const init = async () =>
   new Promise((resolved, rejected) => {
-    amqp.connect(AMQP_URL, (err, connection) => {
+    amqp.connect(CLOUDAMQP_URL, (err, connection) => {
       if (err) {
         return rejected(err);
       }
