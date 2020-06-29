@@ -4,11 +4,13 @@ import { logger } from './logger';
 
 dotenv.config();
 
-const { DATABASE_URL = 'redis://postgres:5432' } = process.env;
+const { DATABASE_URL } = process.env;
 
 const dbClient = new Client({
   connectionString: DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 dbClient.on('error', (err: Error) => {
