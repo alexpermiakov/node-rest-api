@@ -4,13 +4,13 @@ import format from 'pg-format';
 
 subscribe((data: any) => {
   let featuresWithHighConfidence = data.features.filter(
-    (feature: Feature) => feature.properties.confidence >= 8,
+    (feature: any) => feature.properties.confidence >= 8,
   );
   addPlaces(featuresWithHighConfidence);
 });
 
-const addPlaces = async (features: Feature[]) => {
-  let res = features.map((feature) => [JSON.stringify(feature)]);
+const addPlaces = async (features: any) => {
+  let res = features.map((feature: any) => [JSON.stringify(feature)]);
 
   await dbClient.query(
     format('INSERT INTO "topplaces" (feature) VALUES %L', res),
