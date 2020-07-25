@@ -8,7 +8,8 @@ import routes from '../../services/search/routes';
 
 jest.mock('axios');
 
-(axios as any).mockResolvedValue({ data: { features: [] } });
+const mockedAxios = axios as any;
+mockedAxios.get.mockResolvedValue({ data: { features: [] } });
 
 describe('routes', () => {
   let router: Router;
