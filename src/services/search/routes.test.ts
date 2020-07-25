@@ -8,7 +8,7 @@ import routes from '../../services/search/routes';
 
 jest.mock('axios');
 
-const mockedAxios = axios as any;
+const mockedAxios = axios as jest.Mocked<typeof axios>;
 mockedAxios.get.mockResolvedValue({ data: { features: [] } });
 
 describe('routes', () => {

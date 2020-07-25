@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getPlaces } from './OpenCageDataProvider';
 
 jest.mock('axios');
-const mockedAxios = axios as any;
+const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe('OpenCageDataProvider', () => {
   test('an empty query string', async () => {
