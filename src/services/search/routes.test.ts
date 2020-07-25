@@ -1,14 +1,14 @@
 import express, { Router } from 'express';
 import request from 'supertest';
 import { applyMiddleware, applyRoutes } from '../../utils';
-import got from 'got';
+import axios from 'axios';
 import middleware from '../../middleware';
 import errorHandlers from '../../middleware/errorHandlers';
 import routes from '../../services/search/routes';
 
-jest.mock('got');
+jest.mock('axios');
 
-(got as any).mockResolvedValue({ body: '{"features": []}' });
+(axios as any).mockResolvedValue({ data: { features: [] } });
 
 describe('routes', () => {
   let router: Router;
