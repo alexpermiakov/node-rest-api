@@ -2,8 +2,8 @@ import { dbClient } from '../../config/db';
 import { subscribe } from '../../config/messenger';
 import format from 'pg-format';
 
-subscribe((data: any) => {
-  let featuresWithHighConfidence = data.features.filter(
+subscribe(({ features }: { features: Feature[] }) => {
+  let featuresWithHighConfidence = features.filter(
     (feature: Feature) => feature.properties.confidence >= 8,
   );
   addPlaces(featuresWithHighConfidence);
