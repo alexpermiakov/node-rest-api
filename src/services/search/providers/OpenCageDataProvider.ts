@@ -1,4 +1,4 @@
-import got from 'got';
+import axios from 'axios';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -6,6 +6,6 @@ dotenv.config();
 export const getPlaces = async (query: string) => {
   const key = process.env.OPEN_CAGE_DATA_KEY;
   const url = `https://api.opencagedata.com/geocode/v1/geojson?q=${query}&key=${key}&limit=20&no_annotations=1`;
-  const response = await got(url);
-  return JSON.parse(response.body);
+  const response = await axios.get(url);
+  return response.data;
 };

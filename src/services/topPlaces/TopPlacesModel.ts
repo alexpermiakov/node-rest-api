@@ -2,15 +2,16 @@ import { dbClient } from '../../config/db';
 import { subscribe } from '../../config/messenger';
 import format from 'pg-format';
 
-subscribe((data: any) => {
-  let featuresWithHighConfidence = data.features.filter(
+subscribe(({ features }: { features: Feature[] }) => {
+  let featuresWithHighConfidence = features.filter(
     (feature: Feature) => feature.properties.confidence >= 8,
   );
+
   addPlaces(featuresWithHighConfidence);
 });
 
 const addPlaces = async (features: Feature[]) => {
-  let res = features.map((feature) => [JSON.stringify(feature)]);
+  let res = features.map((feature: Feature) => [JSON.stringify(feature)]);
 
   await dbClient.query(
     format('INSERT INTO "TopPlaces" (feature) VALUES %L', res),
