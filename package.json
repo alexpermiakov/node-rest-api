@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "postinstall": "build",
+    "postinstall": "npm run build",
     "build": "tsc",
     "dev": "concurrently -k \"tsc -w\" \"nodemon --on-change-only dist/server.js\"",
     "test": "jest --coverage --verbose --passWithNoTests"
@@ -21,12 +21,16 @@
       "jsx",
       "json",
       "node"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/dist/"
     ]
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/axios": "^0.14.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/compression": "^1.7.0",
     "@types/cookie-parser": "^1.4.2",
@@ -45,6 +49,7 @@
     "@types/supertest": "^2.0.9",
     "@types/swagger-ui-express": "^4.1.2",
     "@types/winston": "^2.4.4",
+    "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",

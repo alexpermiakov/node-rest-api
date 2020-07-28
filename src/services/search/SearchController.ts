@@ -10,7 +10,7 @@ export const getPlacesByName = async (q: string) => {
   }
 
   let result = await getPlaces(q);
-  redisClient.set(q, JSON.stringify(result));
+  redisClient.setex(q, 3600, JSON.stringify(result));
 
   return result;
 };
