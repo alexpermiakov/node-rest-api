@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "tsc-watch": "^1.0.31",
+    "tsc-watch": "^6.2.1",
     "typescript": "^3.2.2"
   }
 }
